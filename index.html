@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MatriCare | Playful Maternal Companion & Fitness Tracker (WHO & IAP)</title>
+  <meta name="description" content="Playful, gamified maternal and child health application for Indian mothers with WHO & IAP guidance, exercises, nutritional level tracking, and myth-busting.">
+  <link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+
+  <!-- App Header with Gamified Badges & Confetti Glow -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="#" class="brand-logo" id="app-logo">
+        <div class="brand-icon">🌸</div>
+        <div class="brand-text">
+          <h1>MatriCare</h1>
+          <p>Play & Health Companion</p>
+        </div>
+      </a>
+
+      <!-- Gamified Header Badges (Streak & Stars) -->
+      <div class="gamified-header-stats">
+        <div class="streak-badge" title="Daily Active Health Streak">
+          🔥 <span id="streak-count-display">1</span> Day Streak
+        </div>
+        <div class="points-badge" title="Health Reward Stars">
+          ⭐ <span id="points-count-display">50</span> Pts
+        </div>
+
+        <button class="mode-toggle-btn" id="mode-toggle-btn">
+          <span id="mode-icon">🤰</span> <span id="mode-text">Pregnancy Mode</span>
+        </button>
+
+        <div class="profile-pill" id="profile-pill-btn" style="cursor: pointer;">
+          <span>👩</span>
+          <span id="user-display-name">Mother's Care</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-layout">
+
+    <!-- Evidence-Based Medical Banner -->
+    <section class="medical-banner" style="background: linear-gradient(135deg, #ECFDF5, #D1FAE5); border: 2px solid #6EE7B7; padding: 12px 18px; border-radius: var(--radius-md); margin-bottom: 16px; display: flex; align-items: center; gap: 12px;">
+      <div style="font-size: 26px;">🩺</div>
+      <p style="font-size: 13px; color: #065F46; font-weight: 600;">
+        <strong>Scientific Medical Science:</strong> All workouts, milestone tracking, and nutrition targets are strictly aligned with clinical guidance from the <strong>World Health Organization (WHO)</strong> and the <strong>Indian Academy of Pediatrics (IAP)</strong>.
+      </p>
+    </section>
+
+    <!-- NEW HERO QUICK PLAY BANNER -->
+    <section style="background: linear-gradient(135deg, #FFF0F3, #FFE4E8); border: 3px solid #FF5A79; border-radius: var(--radius-md); padding: 18px; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(255, 90, 121, 0.15);">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 14px;">
+        <div>
+          <h2 style="font-family: var(--font-fun); font-size: 20px; color: #FF5A79; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+            🎮 Playful Daily Quests & Level Up!
+          </h2>
+          <p style="font-size: 13px; color: var(--slate-body);">Earn ⭐ Health Stars and maintain your 🔥 Daily Streak by completing your pregnancy exercises and nutrition logs!</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+        <button class="btn-primary quick-nav-btn" data-tab="exercises" style="background: linear-gradient(135deg, #A855F7, #6366F1); display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <span>🧘‍♀️</span> Do Yoga & Exercises (+10 ⭐)
+        </button>
+        <button class="btn-primary quick-nav-btn" data-tab="nutrition" style="background: linear-gradient(135deg, #10B981, #059669); display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <span>🍎</span> Fuel Nutrient Levels (+10 ⭐)
+        </button>
+        <button class="btn-primary quick-nav-btn" data-tab="reminders" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8); display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <span>💧</span> Drink & Log Water (+5 ⭐)
+        </button>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs Bar -->
+    <nav class="nav-tabs-bar" aria-label="Main Navigation">
+      <button class="tab-btn active" data-tab="timeline">
+        <span>📅</span> Timeline
+      </button>
+      <button class="tab-btn" data-tab="exercises">
+        <span>🧘‍♀️</span> Yoga & Exercises
+      </button>
+      <button class="tab-btn" data-tab="nutrition">
+        <span>🍎</span> Nutrient Level
+      </button>
+      <button class="tab-btn" data-tab="myths">
+        <span>💡</span> Fact vs Myth
+      </button>
+      <button class="tab-btn" data-tab="symptoms">
+        <span>🩺</span> Symptom Checker
+      </button>
+      <button class="tab-btn" data-tab="reminders">
+        <span>⏰</span> Reminders & Water
+      </button>
+    </nav>
+
+    <!-- TAB 1: Timeline & Development Tracker -->
+    <section class="tab-panel active" id="tab-timeline">
+      <div class="dashboard-grid">
+        
+        <!-- Left: Interactive Timeline Slider & Fetal/Child Growth Card -->
+        <div class="card hero-tracker-card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title" id="tracker-heading">🤰 Fetal Growth & Milestone Tracker</h2>
+              <div class="card-subtitle" id="tracker-subheading">Track week-by-week development & vital care steps</div>
+            </div>
+            <span class="metric-tag" id="current-stage-badge" style="background: var(--primary-rose); color: white; font-weight: 700;">Trimester 2</span>
+          </div>
+
+          <div class="tracker-controls">
+            <div class="timeline-slider-box">
+              <div class="slider-label">
+                <span id="slider-min-text">Week 1</span>
+                <span id="slider-current-text" style="color: var(--primary-rose); font-size: 18px; font-weight: 800;">Week 20</span>
+                <span id="slider-max-text">Week 40</span>
+              </div>
+              <input type="range" class="custom-range" id="timeline-slider" min="1" max="40" value="20">
+            </div>
+          </div>
+
+          <!-- Dynamic Fetal Growth Analogy Box -->
+          <div class="fetal-growth-box" id="fetal-growth-box">
+            <div class="fetal-image-box" id="fetal-emoji">🍌</div>
+            <div class="fetal-info">
+              <h3 class="fetal-size-title" id="fetal-size-title">Size of a Banana (approx. 25 cm)</h3>
+              <div class="fetal-metrics">
+                <span class="metric-tag" id="fetal-weight">Weight: ~300g</span>
+                <span class="metric-tag" id="fetal-length">Length: ~25 cm</span>
+              </div>
+              <p id="fetal-desc-text" style="font-size: 13px; color: var(--slate-body);">
+                Your baby can now swallow amniotic fluid and produces meconium. Hearing is active—your baby can hear your heartbeats and your voice!
+              </p>
+            </div>
+          </div>
+
+          <!-- Maternal Changes & Key Tests -->
+          <div class="milestone-section" style="margin-top: 20px;">
+            <h3 style="font-family: var(--font-fun); font-size: 16px; font-weight: 700; color: var(--slate-dark); margin-bottom: 12px;">Key Medical Highlights & Maternal Changes</h3>
+            <div class="milestone-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+              <div class="milestone-item" style="background: white; padding: 14px; border-radius: var(--radius-sm); border: 2px solid #FFE4E8;">
+                <h4 style="color: var(--primary-rose); font-family: var(--font-fun); margin-bottom: 4px;"><span>🤰</span> Maternal Body Focus</h4>
+                <p id="maternal-body-text" style="font-size: 13px;">Uterus rises to belly button level. You may feel gentle fluttering movements (quickening).</p>
+              </div>
+              <div class="milestone-item" style="background: white; padding: 14px; border-radius: var(--radius-sm); border: 2px solid #D1FAE5;">
+                <h4 style="color: var(--sage-green); font-family: var(--font-fun); margin-bottom: 4px;"><span>🩺</span> Recommended Scans & Tests</h4>
+                <p id="medical-scans-text" style="font-size: 13px;">Anomaly Scan (TIFFA scan) recommended between weeks 18-22 to review organ development.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: IAP Vaccination & Checkup Checklist -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">💉 IAP Care & Vax Checklist</h3>
+              <div class="card-subtitle">Essential clinical milestones</div>
+            </div>
+          </div>
+          
+          <div class="vax-checklist" id="vax-checklist-container" style="display: flex; flex-direction: column; gap: 10px; max-height: 380px; overflow-y: auto;">
+            <!-- Dynamically populated checklist -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 2: Yoga & Exercises (PLAYFUL & ANIMATED WORKOUTS) -->
+    <section class="tab-panel" id="tab-exercises">
+      <div class="card-header" style="margin-bottom: 16px; border: none; padding: 0;">
+        <div>
+          <h2 class="card-title">🧘‍♀️ Prenatal Yogasana & Baby Motor Play Exercises</h2>
+          <div class="card-subtitle">Trimester-safe workouts for expecting mothers & gentle touch motor play for babies</div>
+        </div>
+      </div>
+
+      <!-- Exercise Filter Tabs -->
+      <div class="exercise-filter-bar" style="display: flex; gap: 12px; margin-bottom: 20px;">
+        <button class="filter-chip active" id="filter-ex-mom" data-ex="mom" style="font-family: var(--font-fun); font-size: 14px;">🤰 Expecting Mom Yoga</button>
+        <button class="filter-chip" id="filter-ex-baby" data-ex="baby" style="font-family: var(--font-fun); font-size: 14px;">👶 Baby Play & Postpartum</button>
+      </div>
+
+      <!-- Exercises Grid Container -->
+      <div class="exercise-grid" id="exercise-cards-container">
+        <!-- Dynamically Populated Exercise Cards -->
+      </div>
+    </section>
+
+    <!-- TAB 3: Gamified Nutritional Level Tracker -->
+    <section class="tab-panel" id="tab-nutrition">
+      <div class="nutrient-level-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <h2 style="font-family: var(--font-fun); font-size: 22px; color: #065F46; font-weight: 700;">🍎 Daily Micronutrient Level Tracker</h2>
+            <p style="font-size: 13px; color: #047857;">Log your daily Indian diet intake to level up Iron, Folic Acid, Calcium & Protein bars!</p>
+          </div>
+          <div style="background: white; border: 2px solid #A7F3D0; padding: 8px 16px; border-radius: var(--radius-full); font-family: var(--font-fun); font-weight: 700; color: #047857;">
+            Fuel Score: <span id="overall-fuel-percentage">65%</span>
+          </div>
+        </div>
+
+        <!-- Overall Progress Fill Bar -->
+        <div class="overall-progress-bar-box">
+          <div class="overall-progress-fill" id="overall-progress-fill" style="width: 65%;"></div>
+        </div>
+      </div>
+
+      <!-- Interactive Micro-Nutrient Logging Grid -->
+      <div class="nutrient-interactive-grid" id="nutrient-interactive-container">
+        <!-- Dynamically populated nutrient level cards -->
+      </div>
+    </section>
+
+    <!-- TAB 4: Scientific Myth-Busting Module (Indian Context) -->
+    <section class="tab-panel" id="tab-myths">
+      <div class="card-header" style="margin-bottom: 16px; border: none; padding: 0;">
+        <div>
+          <h2 class="card-title">💡 Indian Maternal & Child Care: Myth vs. Fact</h2>
+          <div class="card-subtitle">Deconstructing traditional practices with WHO & Indian Academy of Pediatrics evidence</div>
+        </div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="myth-filter-bar" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;">
+        <button class="filter-chip active" data-filter="all">All Categories</button>
+        <button class="filter-chip" data-filter="nutrition">Nutrition & Saffron</button>
+        <button class="filter-chip" data-filter="massage">Massage & Oil Myths</button>
+        <button class="filter-chip" data-filter="postpartum">Postpartum Care</button>
+        <button class="filter-chip" data-filter="newborn">Newborn & Remedies</button>
+      </div>
+
+      <!-- Myth Cards Grid -->
+      <div class="myth-cards-grid" id="myth-cards-container">
+        <!-- Dynamically Populated Myth Cards -->
+      </div>
+    </section>
+
+    <!-- TAB 5: Interactive Symptom Checker & Red-Flag Protocol -->
+    <section class="tab-panel" id="tab-symptoms">
+      <div class="card" style="margin-bottom: 24px;">
+        <h2 class="card-title" style="margin-bottom: 4px;">🩺 Interactive Symptom & Home Care Checker</h2>
+        <div class="card-subtitle" style="margin-bottom: 18px;">Select maternal or child symptoms to get WHO/IAP vetted first-line advice & emergency red flags.</div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+          <div class="form-group">
+            <label class="form-label" for="symptom-category">1. Select Patient Group</label>
+            <select class="form-select" id="symptom-category">
+              <option value="pregnancy">Pregnancy & Mother Symptoms</option>
+              <option value="infant">Infant & Toddler Symptoms</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="symptom-select">2. Select Primary Symptom</label>
+            <select class="form-select" id="symptom-select">
+              <!-- Dynamically populated options -->
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- RED-FLAG EMERGENCY ALERT BANNER (Hidden by default) -->
+      <div class="red-flag-alert" id="red-flag-alert">
+        <div class="red-flag-header" style="display: flex; align-items: center; gap: 10px; color: var(--red-flag); margin-bottom: 10px;">
+          <span style="font-size: 28px;">🚨</span>
+          <h3 style="font-family: var(--font-fun); font-size: 20px;">CRITICAL RED-FLAG WARNING: SEE A DOCTOR IMMEDIATELY</h3>
+        </div>
+        <p class="red-flag-body" id="red-flag-text" style="font-size: 14px; color: #7F1D1D; margin-bottom: 16px;">
+          This symptom requires urgent clinical evaluation. Do not rely solely on home remedies.
+        </p>
+        <div class="red-flag-actions" style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="tel:102" class="btn-emergency">📞 Call National Ambulance (102)</a>
+        </div>
+      </div>
+
+      <!-- SYMPTOM REMEDY RESULT CARD -->
+      <div class="card" id="symptom-result-box">
+        <h4 id="symptom-title-result" style="font-family: var(--font-fun); font-size: 18px; color: var(--sage-green);">Morning Sickness / Nausea</h4>
+        <div class="metric-tag" id="symptom-severity-tag" style="background: var(--sage-light); color: var(--sage-green); margin: 8px 0 12px 0; display: inline-block;">Mild / Manageable at Home</div>
+        <p id="symptom-description" style="font-size: 14px; color: var(--slate-body); margin-bottom: 14px;">
+          Common in early pregnancy due to elevated hCG hormones.
+        </p>
+
+        <h5 style="font-family: var(--font-fun); font-size: 15px; font-weight: 700; color: var(--slate-dark); margin-bottom: 8px;">Vetted First-Line Care Steps (WHO Guidelines):</h5>
+        <div class="care-steps-list" id="care-steps-container" style="display: flex; flex-direction: column; gap: 10px;">
+          <!-- Dynamically populated care steps -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 6: Smart Reminders & Hydration Tracker -->
+    <section class="tab-panel" id="tab-reminders">
+      <div class="dashboard-grid">
+        
+        <!-- Hydration Tracker Card -->
+        <div class="card hydration-tracker" style="text-align: center;">
+          <div class="card-header" style="width: 100%;">
+            <div>
+              <h3 class="card-title">💧 Daily Hydration Tracker</h3>
+              <div class="card-subtitle">Target: 8 - 10 Glasses (2.5 - 3 Liters/day)</div>
+            </div>
+          </div>
+          <div style="font-size: 48px; margin-top: 10px; animation: floatBounce 2s infinite;" id="water-icon-hero">💧</div>
+          <div style="font-family: var(--font-fun); font-size: 26px; font-weight: 800; color: var(--slate-dark); margin: 6px 0;" id="water-count-display">0 / 8 Glasses</div>
+          <p style="font-size: 13px; color: var(--slate-muted); max-width: 320px; margin: 0 auto;">
+            Proper hydration prevents urinary tract infections (UTIs), constipation, and pre-term contractions.
+          </p>
+
+          <div class="glass-counter" id="water-glasses-container">
+            <!-- 8 Interactive glass buttons -->
+          </div>
+
+          <button class="btn-secondary" id="reset-water-btn" style="margin-top: 12px;">Reset Hydration Log</button>
+        </div>
+
+        <!-- Smart Notification Schedules -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">⏰ Prenatal & Vaccine Reminders</h3>
+              <div class="card-subtitle">Browser notifications & daily reminders</div>
+            </div>
+          </div>
+
+          <div style="background: var(--sage-light); padding: 14px; border-radius: var(--radius-sm); margin-bottom: 16px; border: 2px solid rgba(37, 141, 109, 0.3);">
+            <p style="font-size: 13px; color: var(--sage-green); font-weight: 600;">
+              🔔 Enable browser push alerts to get automated daily reminders while this app is open.
+            </p>
+            <button class="btn-primary" id="enable-notifications-btn" style="margin-top: 10px; width: 100%;">
+              Enable Browser Reminders
+            </button>
+          </div>
+
+          <div class="reminder-list" style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="reminder-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--bg-warm); border-radius: var(--radius-sm); border: 2px solid #E2E8F0;">
+              <div class="reminder-info">
+                <h5 style="font-family: var(--font-fun); font-size: 14px; color: var(--slate-dark);">💊 Folic Acid & Iron-Calcium Tablets</h5>
+                <p style="font-size: 12px; color: var(--slate-muted);">Scheduled: Daily at 09:00 AM & 08:00 PM</p>
+              </div>
+              <button class="mode-toggle-btn" style="padding: 4px 10px; font-size: 12px;">Active</button>
+            </div>
+
+            <div class="reminder-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--bg-warm); border-radius: var(--radius-sm); border: 2px solid #E2E8F0;">
+              <div class="reminder-info">
+                <h5 style="font-family: var(--font-fun); font-size: 14px; color: var(--slate-dark);">💧 Hydration Check Alert</h5>
+                <p style="font-size: 12px; color: var(--slate-muted);">Scheduled: Every 2 hours</p>
+              </div>
+              <button class="mode-toggle-btn" style="padding: 4px 10px; font-size: 12px;">Active</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Celebration Popup Modal -->
+  <div class="celebration-popup" id="celebration-popup">
+    <div style="font-size: 60px;">🎉</div>
+    <h3 style="font-family: var(--font-fun); font-size: 22px; color: var(--primary-rose); margin-bottom: 6px;" id="celebration-title">Awesome Job!</h3>
+    <p style="font-size: 14px; color: var(--slate-body); margin-bottom: 16px;" id="celebration-desc">You completed your exercise and unlocked +10 Stars!</p>
+    <button class="btn-primary" id="close-celebration-btn">Keep Going! ⭐</button>
+  </div>
+
+  <!-- User Profile Modal Dialog -->
+  <div class="modal-overlay" id="profile-modal">
+    <div class="modal-card">
+      <button class="modal-close" id="close-modal-btn">&times;</button>
+      <h3 style="font-family: var(--font-fun); font-size: 20px; font-weight: 700; color: var(--slate-dark); margin-bottom: 4px;">👤 Mother & Baby Profile Settings</h3>
+      <p style="font-size: 13px; color: var(--slate-muted); margin-bottom: 18px;">Customize your timeline calculations & reminder schedules.</p>
+
+      <form id="profile-form">
+        <div class="form-group">
+          <label class="form-label" for="profile-name">Mother's Name</label>
+          <input type="text" class="form-input" id="profile-name" placeholder="e.g. Priya Sharma" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="profile-mode">Current Care Mode</label>
+          <select class="form-select" id="profile-mode">
+            <option value="pregnancy">Pregnancy Mode (0 - 9 Months)</option>
+            <option value="toddler">Postpartum & Toddler Mode (0 - 3 Years)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 12px;">Save Profile Preferences</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav">
+    <button class="mobile-nav-item active" data-tab="timeline">
+      <span class="mobile-nav-icon">📅</span>
+      <span>Timeline</span>
+    </button>
+    <button class="mobile-nav-item" data-tab="exercises">
+      <span class="mobile-nav-icon">🧘‍♀️</span>
+      <span>Fitness</span>
+    </button>
+    <button class="mobile-nav-item" data-tab="nutrition">
+      <span class="mobile-nav-icon">🍎</span>
+      <span>Nutrients</span>
+    </button>
+    <button class="mobile-nav-item" data-tab="myths">
+      <span class="mobile-nav-icon">💡</span>
+      <span>Myths</span>
+    </button>
+    <button class="mobile-nav-item" data-tab="symptoms">
+      <span class="mobile-nav-icon">🩺</span>
+      <span>Checker</span>
+    </button>
+  </nav>
+
+  <script src="app.js?v=3"></script>
+</body>
+</html>
